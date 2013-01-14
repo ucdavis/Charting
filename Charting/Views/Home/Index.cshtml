@@ -27,7 +27,10 @@
             <th>#</th>
             <th>Workgroup</th>
             <th>Vendor</th>			
+            <th>Total</th>
+            <th>Initiator</th>
             <th>Created</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -37,7 +40,10 @@
                 <th>@order.OrderId</th>
                 <td>@order.WorkgroupName</td>
                 <td>@order.Vendor</td>
+                <td>@string.Format("{0:0.##}", order.TotalAmount)</td>
+                <td>@order.CreatedBy</td>
                 <td>@order.DateCreated</td>
+                <td>@order.Status</td>
             </tr>
         }
     </tbody>

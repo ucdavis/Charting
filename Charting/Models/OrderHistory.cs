@@ -40,11 +40,17 @@ namespace Charting.Models
             var rand = new Random();
             for (int i = 0; i < n; i++)
             {
-                var order = new OrderHistory {OrderId = i + 1};
-                order.WorkgroupName = DataPool.Workgroups[rand.Next(4)];
-                order.Vendor = DataPool.Vendors[rand.Next(4)];
-                order.DateCreated = DateTime.Now.AddDays(-rand.Next(250));
-                
+                var order = new OrderHistory
+                    {
+                        OrderId = i + 1,
+                        WorkgroupName = DataPool.Workgroups[rand.Next(4)],
+                        Vendor = DataPool.Vendors[rand.Next(4)],
+                        CreatedBy = DataPool.People[rand.Next(4)],
+                        Status = DataPool.Statuses[rand.Next(3)],
+                        DateCreated = DateTime.Now.AddDays(-rand.Next(250)),
+                        TotalAmount = Convert.ToDecimal(rand.NextDouble()*200.00)
+                    };
+
                 yield return order;
             }
         }
@@ -54,6 +60,8 @@ namespace Charting.Models
     {
         public static string[] Workgroups = {"Animal Science", "Biology", "Cartography", "Design", "Entemology"};
         public static string[] Vendors = {"Amazon.com", "Barnes And Noble", "Cartier", "Dunkin Donuts", "Etsy"};
+        public static string[] People = { "Ansel Adams", "Billy Beane", "Chris Cross", "David Duchovny", "Ernie Els" };
+        public static string[] Statuses = {"Approver", "Account Manager", "Purchaser", "Completed"};
 
     }
 }
