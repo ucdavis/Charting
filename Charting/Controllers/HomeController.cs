@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Charting.Models;
 using UCDArch.Web.Attributes;
 
 namespace Charting.Controllers
@@ -8,7 +10,9 @@ namespace Charting.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var orders = OrderHistory.GenerateHistory(200).ToList();
+
+            return View(orders);
         }
     }
 }
