@@ -437,6 +437,7 @@
     <Content Include="Views\Sample\DataTable.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Flot\Bar.cshtml" />
+    <Content Include="Views\Flot\Pie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

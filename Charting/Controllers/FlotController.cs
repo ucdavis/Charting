@@ -13,5 +13,9 @@ namespace Charting.Controllers
             return View();
         }
 
+        public ActionResult Pie()
+        {
+            return View();
+        }
     }
 }

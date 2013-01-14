@@ -1,0 +1,35 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Pie Chart";
+}
+
+@section AdditionalScripts
+{
+    <script src="~/Scripts/jquery.flot.js"></script>
+    <script src="~/Scripts/jquery.flot/jquery.flot.pie.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $.get('@Url.Action("OrdersByVendor", "OrderHistory")', function (data) {
+                console.log(data);
+                $.plot($("#placeholder"), data,
+                    {
+                        series: {
+                            pie: { 
+                                show: true
+                            }
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+}
+
+<h2>Pie Chart</h2>
+
+<div class="well">
+    <p class="lead">Pie chart showing orders by Vendor</p>
+    <div id="placeholder" style="width:1000px;height:300px"></div>
+</div>

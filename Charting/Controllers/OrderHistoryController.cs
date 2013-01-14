@@ -16,7 +16,7 @@ namespace Charting.Controllers
         
         public OrderHistoryController()
         {
-            _orders = OrderHistory.GenerateHistory(2000).ToList();
+            _orders = OrderHistory.GenerateHistory(200).ToList();
         }
 
         public JsonNetResult OrdersByMonth()
@@ -28,6 +28,17 @@ namespace Charting.Controllers
                                     select new { months.Key, Count = months.Count() };
 
             return new JsonNetResult(orderCountByMonth.Select(x => new[] { x.Key, x.Count}));
+        }
+
+        public JsonNetResult OrdersByVendor()
+        {
+            var ordersByVendor = from o in _orders
+                                 group o by o.Vendor
+                                 into vendors
+                                 orderby vendors.Key
+                                 select new {vendors.Key, Count = vendors.Count()};
+
+            return new JsonNetResult(ordersByVendor.Select(x => new {label = x.Key, data = x.Count}));
         }
     }
 }
