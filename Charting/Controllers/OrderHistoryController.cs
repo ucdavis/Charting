@@ -27,7 +27,7 @@ namespace Charting.Controllers
                                     orderby months.Key
                                     select new { months.Key, Count = months.Count() };
 
-            return new JsonNetResult(orderCountByMonth.Select(x => new[] {x.Key, x.Count}));
+            return new JsonNetResult(orderCountByMonth.Select(x => new[] { x.Key, x.Count}));
         }
     }
 }

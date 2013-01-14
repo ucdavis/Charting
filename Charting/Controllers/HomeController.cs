@@ -14,12 +14,5 @@ namespace Charting.Controllers
 
             return View(orders);
         }
-
-        public ActionResult Flot()
-        {
-            var orders = OrderHistory.GenerateHistory(200).ToList();
-
-            return View(orders);
-        }
     }
 }
