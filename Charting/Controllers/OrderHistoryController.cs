@@ -23,11 +23,30 @@ namespace Charting.Controllers
         {
             var orderCountByMonth = from o in _orders
                                     group o by o.DateCreated.Month
-                                    into months
-                                    orderby months.Key
-                                    select new { months.Key, Count = months.Count() };
+                                        into months
+                                        orderby months.Key
+                                        select new { months.Key, Count = months.Count() };
 
             return new JsonNetResult(orderCountByMonth.Select(x => new[] { x.Key, x.Count}));
+        }
+
+        public JsonNetResult OrdersByMonthAndStatus()
+        {
+            var orderCountByMonthAndStatus = (from o in _orders
+                                     group o by new { o.DateCreated.Month, o.Status }
+                                         into monthStatus
+                                         orderby monthStatus.Key.Month
+                                         select new { monthStatus.Key.Month, monthStatus.Key.Status, Count = monthStatus.Count() }).ToList();
+
+            var monthlyStatus = new List<dynamic>();
+
+            foreach (var status in DataPool.Statuses)
+            {
+                var ordersForStatus = orderCountByMonthAndStatus.Where(x => x.Status == status);
+                monthlyStatus.Add(new {label = status, data = ordersForStatus.Select(x => new[] {x.Month, x.Count})});
+            }
+
+            return new JsonNetResult(monthlyStatus);
         }
 
         public JsonNetResult OrdersByVendor()

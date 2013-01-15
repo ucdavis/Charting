@@ -12,23 +12,14 @@
         $(function() {
             var datasets = {};
 
-            $.get('@Url.Action("OrdersByMonth", "OrderHistory")', function (data) {
-                console.log(data);
-                datasets = {
-                    "approver": {
-                        label: "approver",
-                        data: data
-                    },
-                    "completed": {
-                        label: "completed",
-                        data: data
-                    }
-                };
+            $.get('@Url.Action("OrdersByMonthAndStatus", "OrderHistory")', function(result) {
+                console.log(result);
 
                 var statusContainer = $("#statuses");
-                $.each(datasets, function(key, val) {
-                    statusContainer.append('<li><label for="id' + key + '"><input type="checkbox" name="'
-                        + key + '" checked="checked" id="id' + key + '"> '
+                $.each(result, function(key, val) {
+                    datasets[val.label] = { label: val.label, data: val.data };
+                    statusContainer.append('<li><label for="id' + val.label + '"><input type="checkbox" name="'
+                        + val.label + '" checked="checked" id="id' + val.label + '"> '
                         + val.label + '</label></li>');
                 });
 
@@ -67,6 +58,6 @@
     </ul>
 </div>
 <div class="well">
-    <p class="lead">Bar chart showing order count by month and by type</p>
+    <p class="lead">Bar chart showing order count by month and by status</p>
     <div id="placeholder" style="width:1000px;height:300px"></div>
 </div>
