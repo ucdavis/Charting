@@ -43,10 +43,10 @@ namespace Charting.Models
                 var order = new OrderHistory
                     {
                         OrderId = i + 1,
-                        WorkgroupName = DataPool.Workgroups[rand.Next(4)],
-                        Vendor = DataPool.Vendors[rand.Next(4)],
-                        CreatedBy = DataPool.People[rand.Next(4)],
-                        Status = DataPool.Statuses[rand.Next(3)],
+                        WorkgroupName = DataPool.Workgroups[rand.Next(8) % 5], //skews results towards first 3
+                        Vendor = DataPool.Vendors[rand.Next(8) % 5],
+                        CreatedBy = DataPool.People[rand.Next(8) % 5],
+                        Status = DataPool.Statuses[rand.Next(8) % 5],
                         DateCreated = DateTime.Now.AddDays(-rand.Next(250)),
                         TotalAmount = Convert.ToDecimal(rand.NextDouble()*200.00)
                     };
@@ -61,7 +61,7 @@ namespace Charting.Models
         public static string[] Workgroups = {"Animal Science", "Biology", "Cartography", "Design", "Entemology"};
         public static string[] Vendors = {"Amazon.com", "Barnes And Noble", "Cartier", "Dunkin Donuts", "Etsy"};
         public static string[] People = { "Ansel Adams", "Billy Beane", "Chris Cross", "David Duchovny", "Ernie Els" };
-        public static string[] Statuses = {"Approver", "Account Manager", "Purchaser", "Completed"};
+        public static string[] Statuses = {"Approver", "Account Manager", "Purchaser", "Completed", "Denied"};
 
     }
 }
