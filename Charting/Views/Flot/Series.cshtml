@@ -1,13 +1,14 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "Series Chart";
+    ViewBag.Title = "Stacked Series Chart";
 }
 
 @section AdditionalScripts
 {
     <script src="~/Scripts/jquery.flot.js"></script>
-    
+    <script src="~/Scripts/jquery.flot/jquery.flot.stack.js"></script>
+
     <script type="text/javascript">
         $(function() {
             var datasets = {};
@@ -42,7 +43,10 @@
                             ticks: [[1, "January"], [2, "February"], [3, "March"], [4, "April"], [5, "May"], [6, "June"], [7, "July"], [8, "August"],
                                 [9, "September"], [10, "October"], [11, "November"], [12, "December"]]
                         },
-                        bars: { show: true }
+                        series: {
+                            stack: true,
+                            bars: { show: true }
+                        }
                     }
                 );
             }
@@ -58,6 +62,6 @@
     </ul>
 </div>
 <div class="well">
-    <p class="lead">Bar chart showing order count by month and by status</p>
+    <p class="lead">Stacked bar chart showing order count by month and by status</p>
     <div id="placeholder" style="width:1000px;height:300px"></div>
 </div>
