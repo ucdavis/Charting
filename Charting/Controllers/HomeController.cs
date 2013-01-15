@@ -10,6 +10,8 @@ namespace Charting.Controllers
     {
         public ActionResult Index()
         {
+            Message = "Click the *Chart* dropdown to view different charts for this data";
+
             var orders = OrderHistory.GenerateHistory(200).ToList();
 
             return View(orders);
