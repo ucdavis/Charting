@@ -438,6 +438,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Flot\Bar.cshtml" />
     <Content Include="Views\Flot\Pie.cshtml" />
+    <Content Include="Views\Flot\Series.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
