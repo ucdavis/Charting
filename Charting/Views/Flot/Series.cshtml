@@ -30,6 +30,7 @@
 
             function plotAccordingToChoices() {
                 var data = [];
+                var $graphPlaceholder = $("#placeholder");
 
                 $("#statuses").find("input:checked").each(function() {
                     var key = $(this).attr("name");
@@ -37,7 +38,7 @@
                         data.push(datasets[key]);
                 });
 
-                $.plot($("#placeholder"), data,
+                $.plot($graphPlaceholder, data,
                     {
                         xaxis: {
                             ticks: [[1, "January"], [2, "February"], [3, "March"], [4, "April"], [5, "May"], [6, "June"], [7, "July"], [8, "August"],
@@ -46,9 +47,16 @@
                         series: {
                             stack: true,
                             bars: { show: true }
-                        }
+                        },
+                        grid: { hoverable: true }
                     }
                 );
+
+                $graphPlaceholder.bind("plothover", function(event, pos, item) {
+                    if (item) {
+                        console.log(item);
+                    }
+                });
             }
         });
     </script>
