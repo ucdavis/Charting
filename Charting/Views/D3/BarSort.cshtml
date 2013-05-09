@@ -29,7 +29,7 @@
 
 <div class="well">
     <h5>Chart Explanation</h5>
-    <label for="sort"><input type="checkbox" id="sort" /> Sort By Frequency</label>
+    <label for="sort"><input type="checkbox" id="sort" /> Sort By Scores</label>
 </div>
 
 <div id="graph"></div>
@@ -43,8 +43,6 @@
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        var formatPercent = d3.format(".0%");
-
         var x = d3.scale.ordinal()
             .rangeRoundBands([0, width], .1, 1);
 
@@ -57,8 +55,7 @@
 
         var yAxis = d3.svg.axis()
             .scale(y)
-            .orient("left")
-            .tickFormat(formatPercent);
+            .orient("left");
 
         var svg = d3.select("#graph").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -87,7 +84,7 @@
                 .attr("y", 6)
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
-                .text("Frequency");
+                .text("Overall Score");
 
             svg.selectAll(".bar")
                 .data(data)
