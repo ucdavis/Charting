@@ -68,11 +68,11 @@
 
         d3.json("@Url.Action("BarSortData")", function(error, data) {
             data.forEach(function (d) {
-                d.frequency = +d.frequency;
+                d.score = +d.score;
             });
 
-            x.domain(data.map(function(d) { return d.letter; }));
-            y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+            x.domain(data.map(function(d) { return d.instructor; }));
+            y.domain([0, d3.max(data, function(d) { return d.score; })]);
 
             svg.append("g")
                 .attr("class", "x axis")
@@ -93,25 +93,20 @@
                 .data(data)
                 .enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function(d) { return x(d.letter); })
+                .attr("x", function (d) { return x(d.instructor); })
                 .attr("width", x.rangeBand())
-                .attr("y", function(d) { return y(d.frequency); })
-                .attr("height", function(d) { return height - y(d.frequency); });
+                .attr("y", function(d) { return y(d.score); })
+                .attr("height", function(d) { return height - y(d.score); });
 
             d3.select("input").on("change", change);
-
-            var sortTimeout = setTimeout(function() {
-                d3.select("input").property("checked", true).each(change);
-            }, 2000);
-
+            
             function change() {
-                clearTimeout(sortTimeout);
 
                 // Copy-on-write since tweens are evaluated after a delay.
                 var x0 = x.domain(data.sort(this.checked
-                    ? function(a, b) { return b.frequency - a.frequency; }
-                    : function(a, b) { return d3.ascending(a.letter, b.letter); })
-                    .map(function(d) { return d.letter; }))
+                    ? function(a, b) { return b.score - a.score; }
+                    : function (a, b) { return d3.ascending(a.instructor, b.instructor); })
+                    .map(function (d) { return d.instructor; }))
                     .copy();
 
                 var transition = svg.transition().duration(750),
@@ -119,7 +114,7 @@
 
                 transition.selectAll(".bar")
                     .delay(delay)
-                    .attr("x", function(d) { return x0(d.letter); });
+                    .attr("x", function (d) { return x0(d.instructor); });
 
                 transition.select(".x.axis")
                     .call(xAxis)

@@ -23,10 +23,10 @@ namespace Charting.Controllers
         {
             return new JsonNetResult(new[]
                 {
-                    new {letter = "A", frequency = 0.54612},
-                    new {letter = "B", frequency = 0.23123},
-                    new {letter = "C", frequency = 0.33123},
-                    new {letter = "D", frequency = 0.13123}
+                    new {instructor = "Alexander Hamilton", score = 3.45},
+                    new {instructor = "Barak Obama", score = 4.23},
+                    new {instructor = "Calvin Coolidge", score = 2.89},
+                    new {instructor = "Dwight Eisenhouer", score = 4.43}
                 });
         }
 
