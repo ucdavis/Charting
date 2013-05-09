@@ -170,6 +170,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ComponentRegistrar.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\D3Controller.cs" />
     <Compile Include="Controllers\FlotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderHistoryController.cs" />
@@ -335,6 +336,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\D3\bullet.js" />
+    <Content Include="Scripts\D3\d3.v3.min.js" />
     <Content Include="Scripts\DataTables-1.9.4\docs\media\js\doc.js" />
     <Content Include="Scripts\DataTables-1.9.4\docs\media\js\jquery.js" />
     <Content Include="Scripts\DataTables-1.9.4\docs\media\js\shBrushJScript.js" />
@@ -439,6 +442,7 @@
     <Content Include="Views\Flot\Bar.cshtml" />
     <Content Include="Views\Flot\Pie.cshtml" />
     <Content Include="Views\Flot\Series.cshtml" />
+    <Content Include="Views\D3\Bullet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
