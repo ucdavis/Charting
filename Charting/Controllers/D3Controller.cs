@@ -14,6 +14,22 @@ namespace Charting.Controllers
             return View();
         }
 
+        public ActionResult BarSort()
+        {
+            return View();
+        }
+
+        public ActionResult BarSortData()
+        {
+            return new JsonNetResult(new[]
+                {
+                    new {letter = "A", frequency = 0.54612},
+                    new {letter = "B", frequency = 0.23123},
+                    new {letter = "C", frequency = 0.33123},
+                    new {letter = "D", frequency = 0.13123}
+                });
+        }
+
         public ActionResult BulletData()
         {
             var data = new List<BulletData>

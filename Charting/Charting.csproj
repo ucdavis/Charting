@@ -443,6 +443,7 @@
     <Content Include="Views\Flot\Pie.cshtml" />
     <Content Include="Views\Flot\Series.cshtml" />
     <Content Include="Views\D3\Bullet.cshtml" />
+    <Content Include="Views\D3\BarSort.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
